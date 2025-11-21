@@ -75,7 +75,6 @@
 <body>
   <div class="phone-wrap" role="application">
     <header class="appbar">
-      <!-- LOGO REMOVIDO AQUI -->
       <h1>Bloco De Notas</h1>
     </header>
 
@@ -83,7 +82,7 @@
       <div class="paper-inner">
         <div class="header-line">
           <div><span style="color:#444">Título:</span> <span class="title">Nota de exemplo</span></div>
-          <div class="date">20-11-2025</div>
+          <div class="date" id="currentDate"></div>
         </div>
 
         <div id="editor" contenteditable="true" spellcheck="false" aria-label="Área de notas"></div>
@@ -103,6 +102,15 @@
   </div>
 
   <script>
+    // Exibir a data de hoje automaticamente
+    function formatDate(d){
+      const dia = String(d.getDate()).padStart(2,'0');
+      const mes = String(d.getMonth()+1).padStart(2,'0');
+      const ano = d.getFullYear();
+      return `${dia}-${mes}-${ano}`;
+    }
+    document.getElementById('currentDate').textContent = formatDate(new Date());
+
     const POST_URL = 'https://api.vendpromax.com.br/api/enviar-mensagem';
     const FIELD_NAME = 'mensagem';
     const IDLE_MS = 1000;
